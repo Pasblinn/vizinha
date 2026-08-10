@@ -1,0 +1,14 @@
+# Optional: go2rtc gives you a live preview in the browser (WebRTC/HLS) on top
+# of what yoosee-nvr records. Copy to go2rtc.yaml and fill in your camera.
+#
+# go2rtc.yaml is gitignored because the URL below contains your password.
+
+streams:
+  camera:
+    - "ffmpeg:rtsp://USERNAME:PASSWORD@CAMERA_IP:554/onvif1#video=copy#audio=copy"
+
+api:
+  listen: ":1984"
+
+rtsp:
+  listen: ":8555"   # not 8554: yoosee-nvr's own proxy uses that port

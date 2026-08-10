@@ -1,0 +1,41 @@
+[Unit]
+Description=yoosee-nvr - local recording and cloud backup for IP cameras
+Documentation=https://github.com/Pasblinn/yoosee-nvr
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+
+# Adjust these three to match your install.
+User=CHANGE_ME
+WorkingDirectory=/home/CHANGE_ME/yoosee-nvr
+ExecStart=/home/CHANGE_ME/yoosee-nvr/.venv/bin/python start.py
+
+EnvironmentFile=-/home/CHANGE_ME/yoosee-nvr/.env
+
+Restart=always
+RestartSec=10
+
+# The camera drops out whenever Wi-Fi hiccups; do not give up on the service
+# because it restarted a few times in a row.
+StartLimitIntervalSec=0
+
+# Sandboxing. ReadWritePaths must include the recordings directory when it
+# lives outside WorkingDirectory (an external disk, for instance).
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/CHANGE_ME/yoosee-nvr
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+RestrictSUIDSGID=true
+
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=yoosee-nvr
+
+[Install]
+WantedBy=multi-user.target

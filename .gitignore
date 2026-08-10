@@ -1,0 +1,36 @@
+# Secrets - never commit these
+.env
+.flask_secret_key
+certs/
+*.pem
+*.key
+*.crt
+rclone.conf
+
+# Recorded footage and derived data
+recordings/
+gravacoes/
+*.mp4
+*.mkv
+*.raw
+.uploaded
+
+# Logs
+*.log
+decibels.log
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local tooling
+go2rtc
+go2rtc.yaml
+.DS_Store
